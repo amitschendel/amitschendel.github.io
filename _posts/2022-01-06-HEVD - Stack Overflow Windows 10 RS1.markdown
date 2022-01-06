@@ -26,15 +26,19 @@ Where `Size` is the size of `UserBuffer`.
 Let's go over the important parts here,
 First, We can see there is a 2048 bytes buffer allocation, I named the variable "local_allocated_buffer".
 Seconed, the buffer is being filled with zeros.
+
 ```c
 char local_allocated_buffer[2048];
 memset(local_allocated_buffer, 0, sizeof(local_allocated_buffer));
 ```
+
 Then we can see a call to `ProbeForRead` which validates that `UserBuffer` is allocated in user space.
 Last, we see the following `memmove` call -
+
 ```C
 memmove(local_allocated_buffer, UserBuffer, Size);
 ```
+
 This line is where the vulnerability occures, the `UserBuffer` is being moved into `local_allocated_buffer` without validating that `Size <= 2048`, this is a vanilla buffer overflow .
 
 ## Exploiting The Vulnerability
@@ -308,6 +312,7 @@ int main() {
 
 
 The picture is from h0mbre's blog, again, I didn't have a setup at the time writing this part, but I can promise you it worked on my machine ;)
+
 ![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220106203415.png)
 
 Hopefully in the next write up I am going to write about Buffer Overflow with GS, on RS5.
