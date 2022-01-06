@@ -10,7 +10,7 @@ categories: windows kernel
 For start, we need to find the `IOCTL` in order to trigger the StackBufferOverflow handler.
 After looking at ida we can see the following-
 
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220102192541.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220102192541.png)
 
 The `IOCTL` is `0x222003`.
 
@@ -18,7 +18,7 @@ The `IOCTL` is `0x222003`.
 ## Code Overview
 Looking at `BufferOverflowStack` function -
 
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220102193004.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220102193004.png)
 
 We can see it takes two arguments, `UserBuffer` and `Size`.
 Where `Size` is the size of `UserBuffer`.
@@ -72,11 +72,11 @@ int main() {
 Here, we supply a buffer in size of `0x1000` which is `4096` bytes.
 Running the above is causing a system crash -
 
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220104094251.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220104094251.png)
 
 We can see it happend during the `ret` instruction, Let's dump the stack to see the address we are attempting to return to -
 
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220104094820.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220104094820.png)
 
 Awesome, it means we can control `rip` when returning from the function.
 
@@ -87,7 +87,7 @@ We need to find the exact offset of the `ret` instruction, we can do it by using
 Or, we can just look at the assembly and figure it out -
 
 From xpn's blog -
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220104121456.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220104121456.png)
 
 We can see that our data is `800h` in size, adding 8 bytes to that because of `rbp` being pushed to the stack at the start of the function and we get `808h=2056`, this is the size of the buffer, now we want to add 8 more bytes that will be used for `rip`.
 
@@ -114,7 +114,7 @@ We can use a tool like [ROPgadget](https://github.com/JonathanSalwan/ROPgadget)
 ROPgadget --binary /mnt/c/Windows/System32/ntoskrnl.exe | grep "pop rcx ; ret"
 ```
 
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220105142211.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220105142211.png)
 
 Unfortunately, at the time writing this part I didn't have a setup so I am going to use the offsets from h0mbre's blog.
 
@@ -308,7 +308,7 @@ int main() {
 
 
 The picture is from h0mbre's blog, again, I didn't have a setup at the time writing this part, but I can promise you it worked on my machine ;)
-![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%20220106203415.png?raw=true)
+![](https://github.com/amitschendel/amitschendel.github.io/blob/master/assets/images/Pasted%20image%2020220106203415.png)
 
 Hopefully in the next write up I am going to write about Buffer Overflow with GS, on RS5.
 Thank you for reading, and thanks to all the amazing write ups out there that I can study from.
