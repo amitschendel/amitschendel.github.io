@@ -44,7 +44,7 @@ This line is where the vulnerability occures, the `UserBuffer` is being moved in
 ## Exploiting The Vulnerability
 Let's write a POC for crashing the system -
 
-```C
+```c
 #include <iostream>
 #include <Windows.h>
 
