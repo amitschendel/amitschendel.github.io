@@ -7,8 +7,7 @@ categories: Windows Kernel
 # Hide my IOCTL
 The goal of this research is to find how we can safely use IOCTL's.
 What are the ways someone can monitor me, and what I can do to avoid it?
-What is the best method for us to use?
-I will try to answer all of these questions in this blog post.
+I will try to answer these questions in this blog post.
 
 ## Small intro to IOCTL's
 IOCTL - Input and output control.
