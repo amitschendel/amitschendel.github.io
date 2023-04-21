@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "Research - Hide My IOCTL"
-date:   2022-01-06 20:46:55.487948
+date:   2022-01-23 20:46:55.487948
 categories: Windows Kernel
 ---
 # Hide my IOCTL
