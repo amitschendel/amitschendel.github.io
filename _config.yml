@@ -103,7 +103,7 @@ analytics:
 # Site Author
 author:
   name             : "Amit Schendel"
-  avatar           : "/assets/images/Gfba90ec21.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/photo_2023-04-20_22-23-04.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Welcome ;)"
   location         : "IL"
   email            : "amitschendel@gmail.com"
