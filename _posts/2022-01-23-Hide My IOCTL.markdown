@@ -56,7 +56,7 @@ You will also need to create a device and a symlink, but there are tons of examp
 So, the problem I am trying to solve is the fact that using IOCTL's is very very exposed.
 If I am a legitimate driver my IOCTL communication interface will probably look like that - 
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220118150406.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220118150406.png)
 
 As we can see in "winobj", very exposed, our device object will appear in this list.
 So, in the following sections I am going to cover as many methods I could find to hide/monitor/hook IOCTLs.
@@ -259,13 +259,13 @@ NTSTATUS SupportedFunction(PDEVICE_OBJECT DeviceObject, PIRP Irp)
 
 To find a foreign driver IOCTL, we can use some decompiler and look for the MajorFunction array in index 14. Which is `IRP_MJ_DEVICE_CONTROL`.
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220118153545.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220118153545.png)
 
 So, in the above example we could just define support for `IRP_MJ_DEVICE_CONTROL` and check if the data contains magic bytes, if it is, we will handle it and won't pass it on to the next driver, and if it doesn't, we will just pass it on.
 
 Here is a flow chart to simplify the process -
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220119194625.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220119194625.png)
 
 ### Monitor device hooking
 Let's switch the viewpoint, and think about how can we know if someone is hooking our device?
@@ -398,7 +398,7 @@ The above code is just a POC so forgive me for the unclean code.
 
 Also, the correct way to go over all the drivers on the system is by querying the `\\Driver` directory and not by using the `ObReferenceObjectByName` as I did because some drivers just change their `DriverName` property and that won't work in case it happens.
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220118161427.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220118161427.png)
 
 So here I have attached my driver ("stlkrn") to beep and we can see it very clearly.
 
@@ -475,11 +475,11 @@ As we can see inside the FILE_OBJECT struct we have a DeviceObject.
 
 Let's talk a little bit about what happens in the background when an application calls `NtDeviceIoControlFile`. Here is a very high-level overview.
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220125163153.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220125163153.png)
 
 For our purposes, `IoGetRelatedDeviceObject` retrieves the `DeviceObject` member of the `FILE_OBJECT` structure.
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220125163321.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220125163321.png)
 
 The above figure is from the implementation in ReactOS.
 
@@ -707,7 +707,7 @@ pHookArray[0].OriginalFunction = NULL;
 
 Now, let's associate the shim with a driver -
 
-![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20Image%2020220123230654.png)
+![](https://raw.githubusercontent.com/amitschendel/amitschendel.github.io/master/assets/images/Pasted%20image%2020220123230654.png)
 
 For associating the shim with the provider we can hijack a shim that is already defined in the SDB - "autofail.sys"
 Or we can add a new entry in the SDB.
