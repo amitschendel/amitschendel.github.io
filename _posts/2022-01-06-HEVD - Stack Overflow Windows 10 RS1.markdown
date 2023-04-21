@@ -2,7 +2,7 @@
 layout: single
 title:  "HEVD - Stack Overflow Windows 10 RS1"
 date:   2022-01-06 20:46:55.487948
-categories: windows kernel
+categories: Windows Kernel
 ---
 # Exploiting Buffer Overflow
 
