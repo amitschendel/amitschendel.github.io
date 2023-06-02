@@ -60,32 +60,6 @@ If I am a legitimate driver my IOCTL communication interface will probably look 
 As we can see in "winobj", very exposed, our device object will appear in this list.
 So, in the following sections I am going to cover as many methods I could find to hide/monitor/hook IOCTLs.
 
-## Monitor with file system minifilter driver
-To start with, an anti virus or any other kernel monitoring software will probebly use a file system minifilter driver.
-A fs minifilter allows us to register post and pre operation callbacks on any action related to the file system.
-That means the if we send an IOCTL, any fs minifiter can see it.
-
-```cpp
-FLT_PREOP_CALLBACK_STATUS FLTAPI PreOperationCreate(
-    _Inout_ PFLT_CALLBACK_DATA Data,
-    _In_ PCFLT_RELATED_OBJECTS FltObjects,
-    _Flt_CompletionContext_Outptr_ PVOID* CompletionContext
-)
-{
-    UNREFERENCED_PARAMETER(FltObjects);
-    UNREFERENCED_PARAMETER(CompletionContext);
-    //
-    // Pre-create callback to get file info during creation or opening.
-    //
-    DbgPrint("%wZ\n", &Data->Iopb->TargetFileObject->FileName);
-
-    return FLT_PREOP_SUCCESS_NO_CALLBACK;
-}
-
-```
-
-So, before starting to elaborate on the possible methods to hide ourselves, we need to keep that in mind because it will guide us along.
-
 ## Device hooking
 The first method we are going to discuss on is device hooking.
 What if we could use another driver IOCTL communication interface for ourselves?
