@@ -5,6 +5,6 @@ command: cat about.md
 permalink: /about/
 ---
 
-Security researcher. Vulnerability research, reverse engineering, exploitation.
+I take software apart to see how it breaks. Sometimes I write about it here.
 
 [github](https://github.com/amitschendel) <span class="dim">/</span> [x](https://x.com/amitschendel)
