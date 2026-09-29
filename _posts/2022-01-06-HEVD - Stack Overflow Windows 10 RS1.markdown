@@ -35,7 +35,7 @@ memset(local_allocated_buffer, 0, sizeof(local_allocated_buffer));
 Then we can see a call to `ProbeForRead` which validates that `UserBuffer` is allocated in user space.
 Last, we see the following `memmove` call -
 
-```C
+```c
 memmove(local_allocated_buffer, UserBuffer, Size);
 ```
 

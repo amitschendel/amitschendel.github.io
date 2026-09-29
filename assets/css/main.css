@@ -321,14 +321,19 @@ nav a[aria-current="page"]::before { content: "> "; }
 .post-nav a:hover .dim { color: var(--fg); }
 .post-nav .next { text-align: right; margin-left: auto; }
 
-/* grayscale syntax highlighting (rouge) */
-.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .cp { color: #6a6a6a; font-style: italic; }
-.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kt, .highlight .kc { color: #fff; font-weight: 700; }
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .se, .highlight .sh { color: #b5b5b5; }
-.highlight .m, .highlight .mi, .highlight .mh, .highlight .mf, .highlight .il { color: #d0d0d0; }
-.highlight .nf, .highlight .fm, .highlight .nc { color: #fff; text-decoration: underline; text-decoration-color: #444; text-underline-offset: 3px; }
-.highlight .o, .highlight .p { color: #9a9a9a; }
-.highlight .nb, .highlight .bp { color: #dcdcdc; }
+/* syntax highlighting (rouge): muted colors so code reads without breaking the monochrome look */
+.highlight { color: #d8dee9; }
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .ch, .highlight .cd { color: #616e88; font-style: italic; }
+.highlight .cp, .highlight .cpf { color: #b48ead; }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kv, .highlight .ow { color: #b39ddb; }
+.highlight .kt, .highlight .kc, .highlight .nc, .highlight .nn { color: #8fbcbb; }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx { color: #a3be8c; }
+.highlight .m, .highlight .mi, .highlight .mh, .highlight .mf, .highlight .mo, .highlight .mb, .highlight .il { color: #d08770; }
+.highlight .nf, .highlight .fm, .highlight .nl { color: #88c0d0; }
+.highlight .nb, .highlight .bp, .highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: #81a1c1; }
+.highlight .na, .highlight .nt, .highlight .no { color: #ebcb8b; }
+.highlight .o, .highlight .p { color: #8a93a3; }
+.highlight .err { color: inherit; background: none; }
 
 @media (max-width: 600px) {
   body { font-size: 14px; }
