@@ -195,7 +195,7 @@ nav a[aria-current="page"]::before { content: "> "; }
 
 .post-list a {
   display: grid;
-  grid-template-columns: 7.5rem 1fr auto;
+  grid-template-columns: 7.5rem 1fr;
   align-items: baseline;
   gap: 16px;
   padding: 14px 8px;
@@ -203,20 +203,11 @@ nav a[aria-current="page"]::before { content: "> "; }
 }
 
 .post-list a:hover { background: var(--fg-strong); color: var(--bg); }
-.post-list a:hover time,
-.post-list a:hover .tag { color: var(--bg); border-color: var(--bg); }
+.post-list a:hover time { color: var(--bg); }
 
 .post-list time { color: var(--dim); font-size: 13px; }
 
 .post-title { font-weight: 500; }
-
-.tag {
-  padding: 0 6px;
-  border: 1px solid var(--line-strong);
-  color: var(--dim);
-  font-size: 12px;
-  white-space: nowrap;
-}
 
 .year + .year { margin-top: 48px; }
 
@@ -340,7 +331,6 @@ nav a[aria-current="page"]::before { content: "> "; }
   .container { padding-top: 32px; }
   .hero { padding: 4vh 0 8vh; }
   .post-list a { grid-template-columns: 1fr; gap: 2px; }
-  .post-list .tag { justify-self: start; margin-top: 4px; }
   .prose { font-size: 16px; }
   @media (prefers-reduced-motion: reduce) {
   .cursor, .typed::after, .glitch::before, .glitch::after { animation: none; }

@@ -9,7 +9,6 @@ layout: default
     <p class="meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time>
       <span class="sep">/</span> {{ words | divided_by: 200 | plus: 1 }} min read
-      {% if page.categories.size > 0 %}<span class="sep">/</span> <span class="tag">{{ page.categories | join: ' ' | downcase }}</span>{% endif %}
     </p>
   </header>
   <div class="prose">

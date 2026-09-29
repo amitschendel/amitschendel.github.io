@@ -2,7 +2,6 @@
 layout: post
 title:  "HEVD - Arbitrary Write Windows 10 RS1"
 date:   2021-12-27 15:32:50 +0200
-categories: Windows Kernel
 ---
 # Exploiting Arbitrary Write
 
