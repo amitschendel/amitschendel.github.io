@@ -1,5 +1,6 @@
 title: Amit Schendel
-description: Security research, vulnerabilities and exploitation write-ups.
+# Left empty so GitHub Pages does not fill it from the repo description.
+description: ""
 url: https://amitschendel.github.io
 baseurl: ""
 author: Amit Schendel
