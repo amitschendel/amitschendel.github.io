@@ -1,4 +1,17 @@
 ---
-layout: home
-author_profile: true
+layout: default
+body_class: home
+description: Security research write-ups.
 ---
+<section class="hero">
+  <p class="prompt"><span class="dim">$</span> <span class="typed" data-text="whoami"></span></p>
+  <h1 class="glitch" data-text="amit schendel">amit schendel</h1>
+</section>
+
+<section class="latest">
+  <h2 class="section-title"><span class="dim">$</span> ls -t ~/blog | head -5</h2>
+  {% assign latest = site.posts | slice: 0, 5 %}
+  {% include post-list.html posts=latest %}
+</section>
+
+<script src="{{ '/assets/js/typed.js' | relative_url }}" defer></script>

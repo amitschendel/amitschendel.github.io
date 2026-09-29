@@ -1,0 +1,17 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+<header class="post-header">
+  <p class="prompt"><span class="dim">$</span> ls -lt ~/blog</p>
+  <h1>Blog</h1>
+  <p class="meta">{{ site.posts.size }} posts</p>
+</header>
+{% assign by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in by_year %}
+<section class="year">
+  <h2 class="section-title">{{ year.name }}</h2>
+  {% include post-list.html posts=year.items %}
+</section>
+{% endfor %}
