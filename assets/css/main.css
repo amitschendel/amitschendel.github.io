@@ -307,15 +307,6 @@ nav a[aria-current="page"]::before { content: "> "; }
 
 .prose .highlighter-rouge { position: relative; }
 
-.prose .avatar {
-  float: right;
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  margin: 4px 0 16px 24px;
-  filter: grayscale(1) contrast(1.15);
-}
-
 .post-nav {
   display: flex;
   justify-content: space-between;
@@ -347,12 +338,6 @@ nav a[aria-current="page"]::before { content: "> "; }
   .post-list a { grid-template-columns: 1fr; gap: 2px; }
   .post-list .tag { justify-self: start; margin-top: 4px; }
   .prose { font-size: 16px; }
-  .prose .avatar { float: none; margin: 0 0 24px; }
-  .post-nav { flex-direction: column; }
-  .post-nav a { max-width: none; }
-  .post-nav .next { text-align: left; margin-left: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
   .cursor, .typed::after, .glitch::before, .glitch::after { animation: none; }
 }
