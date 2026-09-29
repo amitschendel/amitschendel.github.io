@@ -1,4 +1,21 @@
 ---
-layout: home
-author_profile: true
+layout: default
+body_class: home
 ---
+<section class="hero">
+  <p class="prompt"><span class="dim">$</span> <span class="typed" data-text="whoami"></span></p>
+  <h1 class="glitch" data-text="AMIT SCHENDEL">AMIT SCHENDEL</h1>
+  <p class="tagline">security researcher <span class="dim">//</span> reverse engineering <span class="dim">//</span> vulnerability research</p>
+  <div class="cta">
+    <a class="btn" href="{{ '/blog/' | relative_url }}">./blog</a>
+    <a class="btn ghost" href="{{ '/about/' | relative_url }}">./about</a>
+  </div>
+</section>
+
+<section class="latest">
+  <h2 class="section-title"><span class="dim">$</span> ls -t ~/blog | head -5</h2>
+  {% assign latest = site.posts | slice: 0, 5 %}
+  {% include post-list.html posts=latest %}
+</section>
+
+<script src="{{ '/assets/js/typed.js' | relative_url }}" defer></script>

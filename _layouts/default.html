@@ -1,42 +1,44 @@
----
----
-
 <!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
-  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='black'/><text x='4' y='23' font-family='monospace' font-size='20' fill='white'>&gt;_</text></svg>">
+  {% if jekyll.environment == 'production' and site.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ site.google_analytics }}');</script>
+  {% endif %}
+</head>
+<body class="{{ page.body_class }}">
+  <div class="scanlines" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="logo" href="{{ '/' | relative_url }}"><span class="dim">~/</span>amit<span class="cursor" aria-hidden="true"></span></a>
+    <nav>
+      {% assign here = page.url %}
+      <a href="{{ '/' | relative_url }}"{% if here == '/' %} aria-current="page"{% endif %}>home</a>
+      <a href="{{ '/about/' | relative_url }}"{% if here == '/about/' %} aria-current="page"{% endif %}>about</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if here == '/blog/' or page.layout == 'post' %} aria-current="page"{% endif %}>blog</a>
+    </nav>
+  </header>
 
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-    {% include_cached skip-links.html %}
-    {% include_cached browser-upgrade.html %}
-    {% include_cached masthead.html %}
+  <main class="container">
+    {{ content }}
+  </main>
 
-    <div class="initial-content">
-      {{ content }}
-    </div>
-
-    {% if site.search == true %}
-      <div class="search-content">
-        {% include_cached search/search_form.html %}
-      </div>
-    {% endif %}
-
-    <div id="footer" class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include_cached footer.html %}
-      </footer>
-    </div>
-
-    {% include scripts.html %}
-
-  </body>
+  <footer class="site-footer">
+    <span class="dim">&copy; {{ 'now' | date: '%Y' }} {{ site.author }}</span>
+    <span class="links">
+      <a href="https://github.com/{{ site.github_username }}">github</a>
+      <a href="https://x.com/{{ site.twitter.username }}">x</a>
+      <a href="{{ '/feed.xml' | relative_url }}">rss</a>
+    </span>
+  </footer>
+</body>
 </html>
