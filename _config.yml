@@ -10,8 +10,7 @@ github_username: amitschendel
 twitter:
   username: amitschendel
 
-# Matches the old theme's URLs so existing links keep working.
-permalink: /:categories/:title/
+permalink: /blog/:title/
 
 markdown: kramdown
 highlighter: rouge
