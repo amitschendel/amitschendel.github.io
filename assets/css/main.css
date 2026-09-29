@@ -141,7 +141,7 @@ nav a[aria-current="page"]::before { content: "> "; }
 
 .tagline { margin: 24px 0 36px; color: var(--fg); font-size: 15px; }
 
-.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
 
 .btn {
   display: inline-block;
@@ -158,7 +158,7 @@ nav a[aria-current="page"]::before { content: "> "; }
 .btn.ghost { background: transparent; color: var(--fg-strong); }
 .btn.ghost:hover { background: var(--fg-strong); color: var(--bg); }
 
-/* glitch: two offset copies that jitter for a moment every few seconds */
+/* glitch: a faint offset copy that flickers for a moment every few seconds */
 .glitch { position: relative; display: inline-block; }
 
 .glitch::before,
@@ -166,24 +166,22 @@ nav a[aria-current="page"]::before { content: "> "; }
   content: attr(data-text);
   position: absolute;
   inset: 0;
-  background: var(--bg);
   opacity: 0;
+  pointer-events: none;
 }
 
-.glitch::before { color: #bdbdbd; animation: glitch-a 6s infinite steps(1); }
-.glitch::after { color: #5c5c5c; animation: glitch-b 6s infinite steps(1); }
+.glitch::before { color: rgba(255, 255, 255, 0.35); animation: glitch-a 9s infinite steps(1); }
+.glitch::after { color: rgba(255, 255, 255, 0.2); animation: glitch-b 9s infinite steps(1); }
 
 @keyframes glitch-a {
-  0%, 91%, 100% { opacity: 0; transform: none; clip-path: none; }
-  92% { opacity: 1; transform: translate(-4px, 0); clip-path: inset(10% 0 60% 0); }
-  94% { opacity: 1; transform: translate(3px, 0); clip-path: inset(55% 0 20% 0); }
-  96% { opacity: 1; transform: translate(-2px, 0); clip-path: inset(30% 0 45% 0); }
+  0%, 96%, 100% { opacity: 0; transform: none; clip-path: none; }
+  96.5% { opacity: 1; transform: translateX(-2px); clip-path: inset(20% 0 55% 0); }
+  97.5% { opacity: 1; transform: translateX(1px); clip-path: inset(60% 0 15% 0); }
 }
 
 @keyframes glitch-b {
-  0%, 91%, 100% { opacity: 0; transform: none; clip-path: none; }
-  93% { opacity: 1; transform: translate(4px, 0); clip-path: inset(65% 0 5% 0); }
-  95% { opacity: 1; transform: translate(-3px, 0); clip-path: inset(5% 0 75% 0); }
+  0%, 96%, 100% { opacity: 0; transform: none; clip-path: none; }
+  97% { opacity: 1; transform: translateX(2px); clip-path: inset(40% 0 35% 0); }
 }
 
 @keyframes blink { 50% { opacity: 0; } }
